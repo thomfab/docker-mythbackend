@@ -70,10 +70,9 @@ xrdp -y && \
 mv /root/xrdp.ini /etc/xrdp/xrdp.ini && \
 
 # add repositories
-RUN add-apt-repository universe -y && \
-    apt-add-repository ppa:mythbuntu/0.29 -y && \
-
-    apt-get update -qq && \
+  add-apt-repository universe -y && \
+  apt-add-repository ppa:mythbuntu/0.29 -y && \
+  apt-get update -qq && \
 
 # install mythtv-backend, database and ping util
     apt-get install -y --no-install-recommends mythtv-backend mythtv-database iputils-ping && \
