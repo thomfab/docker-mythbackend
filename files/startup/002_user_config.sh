@@ -10,4 +10,4 @@ usermod -a -G mythtv,users,adm,sudo mythtv
 chown -R mythtv:mythtv /home/mythtv/
 
 # set permissions for files/folders
-chown -R mythtv:users /db /var/lib/mythtv /var/log/mythtv 
+chown -R mythtv:users /var/lib/mythtv /var/log/mythtv 

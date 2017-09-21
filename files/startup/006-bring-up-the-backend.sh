@@ -5,4 +5,5 @@ do
 echo "waiting....."
 sleep 2s
 done
+echo "start backend"
 exec /sbin/setuser mythtv /usr/bin/mythbackend --logpath /var/log/mythtv  >/dev/null 2>&1 &

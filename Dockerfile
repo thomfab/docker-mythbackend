@@ -43,10 +43,6 @@ rmdir /root/startup && \
 chmod +x /etc/my_init.d/* && \
 
 # add repos
-echo "deb http://archive.ubuntu.com/ubuntu/ xenial multiverse" >> /etc/apt/sources.list && \
-echo "deb-src http://archive.ubuntu.com/ubuntu/ xenial multiverse" >> /etc/apt/sources.list && \
-echo "deb http://archive.ubuntu.com/ubuntu/ xenial-updates multiverse" >> /etc/apt/sources.list && \
-echo "deb-src http://archive.ubuntu.com/ubuntu/ xenial-updates multiverse" >> /etc/apt/sources.list && \
 apt-add-repository ppa:ubuntu-mate-dev/ppa && \
 apt-add-repository ppa:ubuntu-mate-dev/xenial-mate && \
 
@@ -55,7 +51,6 @@ apt-add-repository ppa:ubuntu-mate-dev/xenial-mate && \
 apt-get update -qq && \
 apt-get install -qy --force-yes --no-install-recommends \
 wget \
-openjdk-7-jre \
 sudo \
 mate-desktop-environment-core \
 x11vnc \
@@ -70,12 +65,12 @@ xrdp -y && \
 mv /root/xrdp.ini /etc/xrdp/xrdp.ini && \
 
 # add repositories
-  add-apt-repository universe -y && \
-  apt-add-repository ppa:mythbuntu/0.29 -y && \
-  apt-get update -qq && \
+add-apt-repository universe -y && \
+apt-add-repository ppa:mythbuntu/0.29 -y && \
+apt-get update -qq && \
 
 # install mythtv-backend, database and ping util
-    apt-get install -y --no-install-recommends mythtv-backend mythtv-database iputils-ping && \
+apt-get install -y --no-install-recommends mythtv-backend mythtv-database xmltv unzip mythtv-status iputils-ping && \
 
 # install mythweb
 apt-get install \
@@ -85,19 +80,6 @@ mythweb -y && \
 apt-get install \
 hdhomerun-config-gui \
 hdhomerun-config -y && \
-
-# Configure apache
-sed -i "s/short_open_tag = Off/short_open_tag = On/" /etc/php5/apache2/php.ini && \
-sed -i "s/error_reporting = .*$/error_reporting = E_ERROR | E_WARNING | E_PARSE/" /etc/php5/apache2/php.ini && \
-mv /root/ports.conf /etc/apache2/ports.conf && \
-mv /root/000-default-mythbuntu.conf /etc/apache2/sites-available/000-default-mythbuntu.conf && \
-mv /root/mythweb.conf /etc/apache2/sites-available/mythweb.conf  && \
-echo "export DATABASE_HOST" >> /etc/apache2/envvars && \
-echo "export DATABASE_PORT" >> /etc/apache2/envvars && \
-
-# mythweb CGI fix: See https://bugs.launchpad.net/mythbuntu/+bug/1316409
-ln -s /etc/apache2/mods-available/cgi.load /etc/apache2/mods-enabled/cgi.load && \
-echo AddHandler cgi-script .cgi .pl >> /etc/apache2/mods-enabled/mime.conf && \
 
 # set mythtv to uid and gid
 usermod -u ${USER_ID} mythtv && \
