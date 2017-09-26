@@ -25,7 +25,7 @@ EXPOSE 3389 5000/udp 6543 6544
 
 
 # set volumes
-VOLUME /home/mythtv /mnt/recordings /mnt/video
+VOLUME /home/mythtv /var/lib/mythtv/db_backups /mnt/recordings /mnt/video
 
 # Add files
 ADD files/ /root/
@@ -94,6 +94,7 @@ usermod -s /bin/bash -d /home/mythtv -a -G users,mythtv,adm,sudo mythtv && \
 
 # set permissions for files/folders
 chown -R mythtv:users /var/lib/mythtv /var/log/mythtv /mnt/recordings /mnt/video && \
+chown mythtv:users /mnt/recordings /mnt/video && \
 
 # set up passwordless sudo
 echo '%adm ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/adm && \
