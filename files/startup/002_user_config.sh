@@ -18,4 +18,3 @@ chown -R mythtv:mythtv /home/mythtv/
 
 # set permissions for files/folders
 chown -R mythtv:users /var/lib/mythtv /var/log/mythtv
-chown mythtv:users /mnt/recordings /mnt/video

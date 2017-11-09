@@ -101,7 +101,7 @@ echo "mythtv:mythtv" | chpasswd && \
 usermod -s /bin/bash -d /home/mythtv -a -G users,mythtv,adm,sudo mythtv && \
 
 # set permissions for files/folders
-chown -R mythtv:users /var/lib/mythtv /var/log/mythtv /mnt/recordings /mnt/video && \
+chown -R mythtv:users /var/lib/mythtv /var/log/mythtv && \
 chown mythtv:users /mnt/recordings /mnt/video && \
 
 # set up passwordless sudo
