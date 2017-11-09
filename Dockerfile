@@ -28,7 +28,7 @@ EXPOSE 3389 5000/udp 6543 6544
 VOLUME /home/mythtv /var/lib/mythtv/db_backups /mnt/recordings /mnt/video
 
 # Add files
-ADD files/ /root/
+COPY files /root/
 
 # chfn workaround - Known issue within Dockers
 RUN ln -s -f /bin/true /usr/bin/chfn && \
@@ -75,6 +75,14 @@ apt-get install -y --no-install-recommends mythtv-backend mythtv-database xmltv 
 # install mythweb
 apt-get install \
 mythweb -y && \
+
+# install mythnuv2mkv
+apt-get install \
+mythtv-transcode-utils perl mplayer mencoder wget imagemagick \
+libmp3lame0 x264 faac faad mkvtoolnix vorbis-tools gpac -y && \
+
+mv /root/mythnuv2mkv.sh /usr/bin/ && \
+chmod +x /usr/bin/mythnuv2mkv.sh && \
 
 # install hdhomerun utilities
 apt-get install \
