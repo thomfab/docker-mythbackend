@@ -3,7 +3,7 @@
 Name=MythTV Backend Setup
 Comment=Used to configure a backend
 GenericName=mythtv-setup
-Exec=mythtv-setup
+Exec=mythtv-setup -O ThemePainter=qt
 Type=Application
 Encoding=UTF-8
 Icon=mythtv

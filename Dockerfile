@@ -78,7 +78,7 @@ mythweb -y && \
 
 # install mythnuv2mkv
 apt-get install \
-mythtv-transcode-utils perl mplayer mencoder wget imagemagick \
+libmyth-python mythtv-transcode-utils perl mplayer mencoder wget imagemagick \
 libmp3lame0 x264 faac faad mkvtoolnix vorbis-tools gpac -y && \
 
 mv /root/mythnuv2mkv.sh /usr/bin/ && \
